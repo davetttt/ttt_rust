@@ -6,3 +6,4 @@ authors = ["David Torre <vidtorre@gmail.com>"]
 
 [[bin]]
 
+name = "ttt_rust"
