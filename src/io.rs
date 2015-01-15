@@ -16,11 +16,10 @@ impl Io for ConsoleIo {
     fn prompt(&self, question: String) -> String {
         let mut stdin = BufferedReader::new(stdin());
         let answer: String;
-
         print!("{}", question);
         match stdin.read_line() {
             Ok(line) => answer = line,
-            Err(e)   => answer = self.prompt(question)
+            Err(e)   => panic!(e)
         };
         answer
     }
