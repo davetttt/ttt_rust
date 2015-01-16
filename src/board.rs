@@ -11,11 +11,12 @@ impl Board {
         self.board
     }
 
-    pub fn print_board(&self) {
+    pub fn render_as_string(&self) -> String {
+        let mut result: String = "".to_string();
         for space in self.board.iter() {
-            print!("{}", *space);
+            result.push_str(space.to_string().as_slice());
         }
-        println!("");
+        result
     }
 
     pub fn set_space(&mut self, space: usize, token: usize) {

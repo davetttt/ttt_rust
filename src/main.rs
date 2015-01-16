@@ -1,14 +1,19 @@
 use self::io::*;
 use self::game::*;
+use self::player::*;
 
 mod game;
 mod game_test;
 mod io;
 mod io_test;
+mod player;
+mod player_test;
+mod board;
+mod board_test;
 
 fn main() {
-    println!("tic tac toe");
-    let io: ConsoleIo = Io::new();
-    let mut game: Game<ConsoleIo> = Game::new(io);
-
+    let io = ConsoleIo::new();
+    let human_player = HumanPlayer::new(io);
+    let mut game = Game::new(human_player);
+    game.start();
 }

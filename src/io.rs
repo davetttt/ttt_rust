@@ -2,15 +2,39 @@ use std::io::BufferedReader;
 use std::io::stdin;
 
 pub trait Io {
-    fn new() -> Self;
+    fn print(&self, statement: String);
     fn prompt(&self, question: String) -> String;
+}
+
+pub struct TestIo {
+    answer: String
+}
+
+impl TestIo {
+    pub fn new(answer: String) -> TestIo {
+        TestIo { answer: answer }
+    }
+}
+
+impl Io for TestIo {
+    fn print(&self, statement: String) {}
+
+    fn prompt(&self, question: String) -> String {
+        self.answer.clone()
+    }
 }
 
 pub struct ConsoleIo;
 
-impl Io for ConsoleIo {
-    fn new() -> ConsoleIo {
+impl ConsoleIo {
+    pub fn new() -> ConsoleIo {
         ConsoleIo
+    }
+}
+
+impl Io for ConsoleIo {
+    fn print(&self, statement: String) {
+        print!("{}", statement);
     }
 
     fn prompt(&self, question: String) -> String {
@@ -22,18 +46,6 @@ impl Io for ConsoleIo {
             Err(e)   => panic!(e)
         };
         answer
-    }
-}
-
-pub struct TestIo;
-
-impl Io for TestIo {
-    fn new() -> TestIo {
-        TestIo
-    }
-
-    fn prompt(&self, question: String) -> String {
-        question.to_string()
     }
 }
 
