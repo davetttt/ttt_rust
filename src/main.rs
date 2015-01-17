@@ -10,6 +10,8 @@ mod player;
 mod player_test;
 mod board;
 mod board_test;
+mod rules;
+mod rules_test;
 
 fn main() {
     let io = ConsoleIo::new();

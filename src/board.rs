@@ -23,6 +23,25 @@ impl Board {
         self.board[space] = token;
     }
 
+    pub fn get_line(&self, numbers: Vec<usize>) -> Vec<usize> {
+        let mut spaces = vec![];
+        for number in numbers.iter() {
+            spaces.push(self.board[*number]);
+        }
+        spaces
+    }
+
+    pub fn get_lines(&self) -> Vec<Vec<usize>> {
+        vec![self.get_line(vec![0, 1, 2]),
+             self.get_line(vec![3, 4, 5]),
+             self.get_line(vec![6, 7, 8]),
+             self.get_line(vec![0, 3, 6]),
+             self.get_line(vec![1, 4, 7]),
+             self.get_line(vec![2, 5, 8]),
+             self.get_line(vec![0, 4, 8]),
+             self.get_line(vec![2, 4, 6])]
+    }
+
     pub fn empty_spaces(&self) -> Vec<usize> {
         let mut empties = vec![];
         for space in 0..9 {
@@ -31,6 +50,14 @@ impl Board {
             }
         }
         empties
+    }
+
+    pub fn is_full(&self) -> bool {
+        if self.empty_spaces().len() == 0 {
+            true
+        } else {
+            false
+        }
     }
 
     pub fn space_is_playable(&self, space: usize) -> bool {
