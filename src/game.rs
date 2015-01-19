@@ -16,7 +16,7 @@ impl<P: Player> Game<P> {
         if game_is_over(&self.board) {
             return;
         } else {
-        let space = self.player.get_move(self.board);
+        let space = self.player.get_move(self.board.clone());
         self.board.set_space(space, 1);
         self.game_loop();}
     }

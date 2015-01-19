@@ -1,3 +1,4 @@
+#[derive(Clone)]
 pub struct Board {
     board: [usize; 9]
 }
