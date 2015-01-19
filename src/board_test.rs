@@ -16,6 +16,14 @@ fn set_space() {
 }
 
 #[test]
+fn set_spaces() {
+    let mut board = Board::new();
+    let x_token = 1;
+    board.set_spaces(vec![0, 2, 5], x_token);
+    assert_eq!(board.get_board(), [1, 0, 1, 0, 0, 1, 0, 0, 0]);
+}
+
+#[test]
 fn empty_spaces() {
     let mut board = Board::new();
     let (x_token, o_token) = (1, 2);

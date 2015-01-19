@@ -1,5 +1,6 @@
 use super::player::*;
 use super::board::*;
+use super::rules::*;
 
 pub struct Game<P: Player> {
     board: Board,
@@ -11,14 +12,17 @@ impl<P: Player> Game<P> {
         Game { board: Board::new(), player: player }
     }
 
-    fn next_turn(&mut self) {
-        let space = self.player.get_move(&self.board);
+    fn game_loop(&mut self) {
+        if game_is_over(&self.board) {
+            return;
+        } else {
+        let space = self.player.get_move(self.board);
         self.board.set_space(space, 1);
-        self.next_turn();
+        self.game_loop();}
     }
 
     pub fn start(&mut self) {
-        self.next_turn();
+        self.game_loop();
     }
 }
 

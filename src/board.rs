@@ -23,6 +23,12 @@ impl Board {
         self.board[space] = token;
     }
 
+    pub fn set_spaces(&mut self, numbers: Vec<usize>, token: usize) {
+        for number in numbers.iter() {
+            self.board[*number] = token;
+        }
+    }
+
     pub fn get_line(&self, numbers: Vec<usize>) -> Vec<usize> {
         let mut spaces = vec![];
         for number in numbers.iter() {

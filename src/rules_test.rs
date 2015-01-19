@@ -17,7 +17,7 @@ fn winner_for_line_works_as_expected() {
 #[test]
 fn get_winner_returns_zero_if_no_winner() {
     let mut board = Board::new();
-    let winner = get_winner(board);
+    let winner = get_winner(&board);
     assert_eq!(winner, 0);
 }
 
@@ -27,7 +27,7 @@ fn get_winner_returns_one_if_one_has_row_win() {
     for space in 0..3 {
         board.set_space(space, 1);
     }
-    let winner = get_winner(board);
+    let winner = get_winner(&board);
     assert_eq!(winner, 1);
 }
 
@@ -37,7 +37,7 @@ fn get_winner_returns_two_if_two_has_column_win() {
     board.set_space(0, 2);
     board.set_space(4, 2);
     board.set_space(8, 2);
-    let winner = get_winner(board);
+    let winner = get_winner(&board);
     assert_eq!(winner, 2);
 }
 
@@ -47,6 +47,24 @@ fn get_winner_returns_one_if_one_has_diagonal_win() {
     board.set_space(2, 1);
     board.set_space(4, 1);
     board.set_space(6, 1);
-    let winner = get_winner(board);
+    let winner = get_winner(&board);
     assert_eq!(winner, 1);
 }
+
+#[test]
+fn game_is_over_if_it_has_a_winner() {
+    let mut board = Board::new();
+    for space in 3..6 {
+        board.set_space(space, 2);
+    }
+    assert!(game_is_over(&board));
+}
+
+#[test]
+fn game_is_over_if_board_is_full() {
+    let mut board = Board::new();
+    board.set_spaces(vec![0, 1, 5, 6, 8], 1);
+    board.set_spaces(vec![2, 3, 4, 7], 2);
+    assert!(game_is_over(&board));
+}
+

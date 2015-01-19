@@ -24,7 +24,7 @@ pub fn winner_for_line(line: Vec<usize>) -> usize {
     winner
 }
 
-pub fn get_winner(board: Board) -> usize {
+pub fn get_winner(board: &Board) -> usize {
     let mut winner = 0;
     let lines = board.get_lines();
     for line in lines.iter() {
@@ -36,3 +36,10 @@ pub fn get_winner(board: Board) -> usize {
     winner
 }
 
+pub fn game_is_over(board: &Board) -> bool {
+    let mut over = false;
+    if get_winner(board) != 0 || board.is_full() {
+        over = true;
+    }
+    over
+}
