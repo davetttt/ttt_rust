@@ -1,8 +1,27 @@
 use super::io::*;
 use super::board::*;
+use super::minimax::*;
 
 pub trait Player {
     fn get_move(&self, mut board: Board) -> usize;
+}
+
+pub struct CpuPlayer;
+
+impl CpuPlayer {
+    pub fn new() -> CpuPlayer {
+        CpuPlayer
+    }
+}
+
+impl Player for CpuPlayer {
+    fn get_move(&self, mut board: Board) -> usize {
+        let chosen_space = match minimax(board).0 {
+           Ok(space) => space,
+           Err(e)    => panic!(e),
+        };
+        chosen_space
+    }
 }
 
 pub struct HumanPlayer<I: Io> {
@@ -30,6 +49,4 @@ impl<I: Io> Player for HumanPlayer<I> {
         }
     }
 }
-
-
 

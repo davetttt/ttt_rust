@@ -12,6 +12,10 @@ impl Board {
         self.board
     }
 
+    pub fn number_of_spaces(&self) -> usize {
+        self.board.len()
+    }
+
     pub fn render_as_string(&self) -> String {
         let mut result: String = "".to_string();
         for space in self.board.iter() {
@@ -73,5 +77,15 @@ impl Board {
             is_empty = true;
         }
         is_empty
+    }
+
+    pub fn count_tokens(&self, token: usize) -> usize {
+        let mut token_count = 0;
+        for space in self.board.iter() {
+            if *space == token {
+                token_count += 1;
+            }
+        }
+        token_count
     }
 }

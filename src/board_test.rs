@@ -92,3 +92,14 @@ fn returns_rows_columns_diagonals_as_lines() {
                 [1, 1, 0], [0, 1, 0]]);          // diagonals
 }
 
+#[test]
+fn count_tokens_returns_count_of_specified_token() {
+    let mut board = Board::new();
+    assert_eq!(board.count_tokens(1), 0);
+    assert_eq!(board.count_tokens(2), 0);
+
+    board.set_spaces(vec![0, 1, 5], 1);
+    board.set_spaces(vec![2, 3], 2);
+    assert_eq!(board.count_tokens(1), 3);
+    assert_eq!(board.count_tokens(2), 2);
+}

@@ -12,6 +12,8 @@ mod board;
 mod board_test;
 mod rules;
 mod rules_test;
+mod minimax;
+mod minimax_test;
 
 fn main() {
     let io = ConsoleIo::new();
