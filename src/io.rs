@@ -24,6 +24,7 @@ impl Io for TestIo {
     }
 }
 
+#[derive(Clone)]
 pub struct ConsoleIo;
 
 impl ConsoleIo {

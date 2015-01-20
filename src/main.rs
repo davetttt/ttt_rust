@@ -17,7 +17,9 @@ mod minimax_test;
 
 fn main() {
     let io = ConsoleIo::new();
-    let human_player = HumanPlayer::new(io);
-    let mut game = Game::new(human_player);
-    game.start();
+    let player_one = CpuPlayer::new(1);
+    let player_two = HumanPlayer::new(io.clone(), 2);
+    let mut game = Game::new(player_one, player_two);
+    let winner = game.play();
+    io.print(format!("{} wins!\n", winner));
 }

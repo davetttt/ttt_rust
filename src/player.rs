@@ -4,13 +4,16 @@ use super::minimax::*;
 
 pub trait Player {
     fn get_move(&self, mut board: Board) -> usize;
+    fn get_token(&self) -> usize;
 }
 
-pub struct CpuPlayer;
+pub struct CpuPlayer {
+    token: usize
+}
 
 impl CpuPlayer {
-    pub fn new() -> CpuPlayer {
-        CpuPlayer
+    pub fn new(token: usize) -> CpuPlayer {
+        CpuPlayer { token: token }
     }
 }
 
@@ -22,15 +25,20 @@ impl Player for CpuPlayer {
         };
         chosen_space
     }
+
+    fn get_token(&self) -> usize {
+        self.token
+    }
 }
 
 pub struct HumanPlayer<I: Io> {
     io: I,
+    token: usize
 }
 
 impl<I: Io> HumanPlayer<I> {
-    pub fn new(io: I) -> HumanPlayer<I> {
-        HumanPlayer { io: io }
+    pub fn new(io: I, token: usize) -> HumanPlayer<I> {
+        HumanPlayer { io: io, token: token }
     }
 }
 
@@ -47,6 +55,10 @@ impl<I: Io> Player for HumanPlayer<I> {
             self.io.print("Bad move!\n".to_string());
             self.get_move(board)
         }
+    }
+
+    fn get_token(&self) -> usize {
+        self.token
     }
 }
 
