@@ -16,10 +16,20 @@ impl Board {
         self.board.len()
     }
 
+    pub fn render_token(&self, token: usize) -> String {
+        match token {
+            1 => "X".to_string(),
+            2 => "O".to_string(),
+            _ => "-".to_string()
+        }
+    }
+
     pub fn render_row(&self, row: &Vec<usize>) -> String {
         let mut result: String = "|".to_string();
         for space in row.iter() {
-            result.push_str(format!(" {} |", space.to_string()).as_slice());
+            result.push_str(format!(" {} |",
+                                    self.render_token(*space)).
+                                    as_slice());
         }
         result
     }

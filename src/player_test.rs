@@ -3,11 +3,13 @@ use super::io::*;
 use super::board::*;
 
 #[test]
-fn human_player_get_move_returns_move_when_move_is_valid() {
+fn human_player_get_move_returns_zero_based_move_when_valid() {
+    // Typing in 1 to choose the first space
+    // is more natural than typing 0
     let io = TestIo::new("3".to_string());
     let human_player = HumanPlayer::new(io, 1);
     let board = Board::new();
-    assert_eq!(human_player.get_move(board), 3);
+    assert_eq!(human_player.get_move(board), 2);
 }
 
 #[test]

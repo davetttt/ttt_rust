@@ -49,8 +49,8 @@ impl<I: Io> Player for HumanPlayer<I> {
         let response = self.io.prompt("Enter move: ".to_string());
         let space: Option<usize> = response.trim().parse();
 
-        if space.is_some() && board.space_is_playable(space.unwrap()) {
-            space.unwrap()
+        if space.is_some() && board.space_is_playable(space.unwrap() - 1) {
+            space.unwrap() - 1
         } else {
             self.io.print("Bad move!\n".to_string());
             self.get_move(board)

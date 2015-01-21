@@ -37,6 +37,7 @@ fn main() {
         }
     }
 
+
     let winner = match game_config {
         1     => Game::new(HumanPlayer::new(io.clone(), 1),
                            CpuPlayer::new(2)).play(),
@@ -46,5 +47,9 @@ fn main() {
                            HumanPlayer::new(io.clone(), 2)).play()
     };
 
-    io.print(format!("{} wins!\n", winner));
+    match winner {
+        1 => io.print("X wins!\n".to_string()),
+        2 => io.print("O wins!\n".to_string()),
+        _ => io.print("Draw.\n".to_string())
+    }
 }
