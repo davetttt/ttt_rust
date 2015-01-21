@@ -16,10 +16,26 @@ impl Board {
         self.board.len()
     }
 
+    pub fn render_row(&self, row: &Vec<usize>) -> String {
+        let mut result: String = "|".to_string();
+        for space in row.iter() {
+            result.push_str(format!(" {} |", space.to_string()).as_slice());
+        }
+        result
+    }
+
+    pub fn get_rows(&self) -> Vec<Vec<usize>> {
+        vec![self.get_line(vec![0, 1, 2]),
+             self.get_line(vec![3, 4, 5]),
+             self.get_line(vec![6, 7, 8])]
+    }
+
     pub fn render_as_string(&self) -> String {
-        let mut result: String = "".to_string();
-        for space in self.board.iter() {
-            result.push_str(space.to_string().as_slice());
+        let mut result: String = "+---+---+---+".to_string();
+
+        for row in self.get_rows().iter() {
+            result.push_str((format!("\n{}", self.render_row(row))).as_slice());
+            result.push_str("\n+---+---+---+");
         }
         result
     }
