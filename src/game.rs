@@ -33,5 +33,9 @@ impl<P1: Player, P2: Player> Game<P1, P2> {
         }
         self.play()
     }
+
+    pub fn render_board_as_string(&self) -> String {
+        self.board.render_as_string()
+    }
 }
 
